@@ -80,8 +80,7 @@ app.use((req, res) => {
     res.status(404).json({ message: "Resource is not found" });
   });
 
-//db.initialize(process.env.MONGODB_CONN_STRING)
-db.initialize('mongodb+srv://cotse900:Scrbh2091@web422.2uzumjg.mongodb.net/sample_mflix?retryWrites=true&w=majority')
+db.initialize(process.env.MONGODB_CONN_STRING)
 .then(()=>{
     app.listen(HTTP_PORT, () => {
         console.log(`server listening on: ${HTTP_PORT}`);
