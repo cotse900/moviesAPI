@@ -15,19 +15,18 @@ const HTTP_PORT = process.env.PORT || 8080;
 app.use(cors());
 app.use(express.json());
 
-//home
 app.get('/', (req, res) => {
     res.json({ message: 'API Listening' });
 });
 
-app.post("/api/movies", (req, res) =>{
+app.post("/api/movies", (req, res) => {
     const movieAdded = req.body;
     db.addNewMovie(movieAdded)
     .then((movie) => {
         res.status(201).json(movie);
     })
     .catch((err) => {
-        res.status(500).json({error: err});
+        res.status(500).json({ error: err });
     })
 })
 
@@ -55,8 +54,8 @@ app.get("/api/movies/:id", (req, res) => {
 
 app.put('/api/movies/:id', (req, res) => {
     const { id } = req.params;
-    const updateMovie = req.body;
-    db.updateMovieById(updateMovie, id)
+    const updatedMovie = req.body;
+    db.updateMovieById(updatedMovie, id)
     .then(() => {
         res.status(201).json({ message: `Movie ID: ${id} has been updated successfully` });
     })
@@ -77,8 +76,8 @@ app.delete("/api/movies/:id", (req, res) => {
 })
 
 app.use((req, res) => {
-    res.status(404).json({ message: "Resource is not found" });
-  });
+  res.status(404).json({ message: "Resource not found" });
+});
 
 db.initialize(process.env.MONGODB_CONN_STRING)
 .then(()=>{
