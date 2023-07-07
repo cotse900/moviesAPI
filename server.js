@@ -21,8 +21,8 @@ app.get('/', (req, res) => {
 });
 
 app.post("/api/movies", (req, res) =>{
-    const addMovie = req.body;
-    db.addNewMovie(addMovie)
+    const movieAdded = req.body;
+    db.addNewMovie(movieAdded)
     .then((movie) => {
         res.status(201).json(movie);
     })
