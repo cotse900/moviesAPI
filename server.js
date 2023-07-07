@@ -1,6 +1,7 @@
 /*
 Chungon Tse
 Summer 2023
+https://ruby-precious-coyote.cyclic.app/
 */
 const express = require('express');
 const cors = require('cors');
@@ -20,8 +21,8 @@ app.get('/', (req, res) => {
 });
 
 app.post("/api/movies", (req, res) => {
-    const movieAdded = req.body;
-    db.addNewMovie(movieAdded)
+    const movieData = req.body;
+    db.addNewMovie(movieData)
     .then((movie) => {
         res.status(201).json(movie);
     })
