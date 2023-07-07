@@ -9,7 +9,6 @@ require('dotenv').config();
 const MoviesDB = require("./modules/moviesDB.js");
 const db = new MoviesDB();
 
-// Initializing the app
 const app = express();
 const HTTP_PORT = process.env.PORT || 8080;
 
@@ -21,8 +20,8 @@ app.get('/', (req, res) => {
 });
 
 app.post("/api/movies", (req, res) => {
-    const movieData = req.body;
-    db.addNewMovie(movieData)
+    const movieAdded = req.body;
+    db.addNewMovie(movieAdded)
     .then((movie) => {
         res.status(201).json(movie);
     })
